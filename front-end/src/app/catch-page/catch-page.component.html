@@ -1,0 +1,28 @@
+<p>catch-page works!</p>
+<p>IMAGE</p>
+
+<mat-form-field>
+    <mat-label>Weight</mat-label>
+    <input matInput>
+</mat-form-field>
+
+<mat-form-field>
+    <mat-label>Length</mat-label>
+    <input matInput>
+</mat-form-field>
+<mat-form-field class="example-full-width">
+    <mat-label>Type</mat-label>
+    <input type="text"
+           placeholder="Pick one"
+           aria-label="Number"
+           matInput
+           [formControl]="myControl"
+           [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+      @for (option of filteredOptions | async; track option) {
+        <mat-option [value]="option">{{option}}</mat-option>
+      }
+    </mat-autocomplete>
+  </mat-form-field>
+<p>lure details</p>
+<p>weather/location</p>
