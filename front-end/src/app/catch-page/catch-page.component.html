@@ -1,28 +1,85 @@
 <p>catch-page works!</p>
 <p>IMAGE</p>
-
-<mat-form-field>
-    <mat-label>Weight</mat-label>
-    <input matInput>
-</mat-form-field>
-
-<mat-form-field>
-    <mat-label>Length</mat-label>
-    <input matInput>
-</mat-form-field>
-<mat-form-field class="example-full-width">
-    <mat-label>Type</mat-label>
-    <input type="text"
-           placeholder="Pick one"
-           aria-label="Number"
-           matInput
-           [formControl]="myControl"
-           [matAutocomplete]="auto">
+<p>weather/location</p>
+<form [formGroup]="catchForm" (ngSubmit)="onSubmit()" validate>
+  <mat-form-field>
+    <mat-label>Weight - LBS</mat-label>
+    <input matInput required formControlName="weightContol" />
+    <mat-error>You forgot the weight!</mat-error>
+  </mat-form-field>
+  <br />
+  <mat-form-field>
+    <mat-label>Length - Inches</mat-label>
+    <input matInput />
+  </mat-form-field>
+  <br />
+  <mat-form-field class="example-full-width">
+    <mat-label>Speices</mat-label>
+    <input
+      type="text"
+      placeholder="Pick one"
+      aria-label="Number"
+      matInput
+      formControlName="speciesControl"
+      [matAutocomplete]="auto"
+      required
+    />
+    <mat-error>What kind of fish was that?</mat-error>
     <mat-autocomplete #auto="matAutocomplete">
-      @for (option of filteredOptions | async; track option) {
-        <mat-option [value]="option">{{option}}</mat-option>
+      @for (option of filteredSpecies | async; track option) {
+      <mat-option [value]="option">{{ option }}</mat-option>
       }
     </mat-autocomplete>
   </mat-form-field>
-<p>lure details</p>
-<p>weather/location</p>
+  <br />
+  <mat-form-field>
+    <mat-label>Bait Type</mat-label>
+    <mat-select formControlName="lureControl" required>
+      <mat-option>--</mat-option>
+      @for (lureType of lureType; track lureType) {
+      <mat-option [value]="lureType">{{ lureType }}</mat-option>
+      }
+    </mat-select>
+    @if (catchForm.controls.lureControl.hasError('required')) {
+    <mat-error>Please choose an Bait Type</mat-error>
+    }
+  </mat-form-field>
+  <br />
+  <mat-form-field class="example-full-width">
+    <mat-label>Lure</mat-label>
+    <input
+      type="text"
+      matInput
+      formControlName="lureSubtype"
+      [errorStateMatcher]="matcher"
+      placeholder="Ex. scrum frog"
+    />
+    @if (catchForm.controls.lureSubtype.hasError('required') &&
+    !catchForm.controls.lureSubtype.hasError('required')) {
+    <mat-error>Please enter a subtype</mat-error>
+    } @if (catchForm.controls.lureSubtype.hasError('required')) {
+    <mat-error>Subtype is <strong>required</strong></mat-error>
+    }
+  </mat-form-field>
+  <br />
+  <mat-form-field class="example-full-width">
+    <mat-label>Lure Color</mat-label>
+    <input
+      type="text"
+      matInput
+      formControlName="lureColor"
+      [errorStateMatcher]="matcher"
+      placeholder="Ex. Pumpkin Green"
+    />
+    @if (catchForm.controls.lureColor.hasError('required') &&
+    !catchForm.controls.lureColor.hasError('required')) {
+    <mat-error>Please enter a color</mat-error>
+    } @if (catchForm.controls.lureColor.hasError('required')) {
+    <mat-error>Color is <strong>required</strong></mat-error>
+    }
+  </mat-form-field>
+  <br />
+  <button mat-raised-button type="submit" [disabled]="!catchForm.valid">
+    SUBMIT
+  </button>
+</form>
