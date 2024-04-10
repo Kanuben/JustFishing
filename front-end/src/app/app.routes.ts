@@ -8,7 +8,7 @@ import { CatchPageComponent } from './catch-page/catch-page.component';
 export const routes: Routes = [
     {
         path: '',
-        component: AppComponent,
+        component: HomepageComponent,
         canActivate: [authGuard],
     },
     {
