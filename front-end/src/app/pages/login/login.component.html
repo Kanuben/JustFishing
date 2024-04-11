@@ -1,0 +1,45 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" validate>
+  <div
+    style="
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 50vh;
+    "
+  >
+    <mat-form-field class="example-full-width">
+      <mat-label>Email</mat-label>
+      <input
+        formControlName="emailFormControl"
+        type="email"
+        matInput
+        [errorStateMatcher]="matcher"
+        placeholder="Ex. pat@example.com"
+      />
+      @if (loginForm.controls.emailFormControl.hasError('email') &&
+      !loginForm.controls.emailFormControl.hasError('required')) {
+      <mat-error>Please enter a valid email address</mat-error>
+      } @if (loginForm.controls.emailFormControl.hasError('required')) {
+      <mat-error>Email is <strong>required</strong></mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Password</mat-label>
+      <input
+        type="password"
+        matInput
+        formControlName="passwordFormControl"
+        [errorStateMatcher]="matcher"
+        placeholder="poop"
+      />
+      @if (loginForm.controls.passwordFormControl.hasError('email') &&
+      !loginForm.controls.passwordFormControl.hasError('required')) {
+      <mat-error>Please enter a valid password address</mat-error>
+      } @if (loginForm.controls.passwordFormControl.hasError('required')) {
+      <mat-error>Password is <strong>required</strong></mat-error>
+      }
+    </mat-form-field>
+    <button mat-raised-button type="submit" [disabled]="!loginForm.valid">SUBMIT</button>
+  </div>
+</form>

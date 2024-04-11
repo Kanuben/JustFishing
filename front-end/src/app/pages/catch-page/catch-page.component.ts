@@ -22,7 +22,7 @@ import { AsyncPipe } from '@angular/common';
 import { NgForOf } from '@angular/common';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
-import { FishPointCalculator } from '../utilities/fish-point-calculator';
+import { FishPointCalculator } from '../../utilities/fish-point-calculator';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {

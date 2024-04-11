@@ -1,0 +1,15 @@
+<div
+  style="
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  "
+>
+  <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>Groups</button>
+    <button mat-menu-item>Profile</button>
+  </mat-menu>
+  <button mat-raised-button [routerLink]="'/catchPage'">CAUGHT ONE!</button>
+</div>

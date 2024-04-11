@@ -3,8 +3,7 @@ import {inject} from '@angular/core';
 
 export const authGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
-  console.log("I like big bass and I cannot lie")
-  const authservice = false;
+  const authservice = true;
 
   if(authservice)
   return true;
