@@ -4,21 +4,24 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
 import { User } from './user/entities/user.entity';
+import { CatchModule } from './catch/catch.module';
+import { Catch } from './catch/entities/catch.entity';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
-      port: 32768,
-      password: 'postgrespw',
+      port: 5432,
+      password: 'poop',
       username: 'postgres',
-      entities: [User],
+      entities: [User, Catch],
       database: 'JustFishing',
       synchronize: true,
       logging: true,
     }),
     UserModule,
+    CatchModule,
   ],
   controllers: [AppController],
   providers: [AppService],

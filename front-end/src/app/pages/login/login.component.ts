@@ -15,6 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { HomepageComponent } from '../homepage/homepage.component';
+import { User } from '../../models/user';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -32,7 +33,6 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
@@ -47,10 +47,7 @@ export class LoginComponent {
   matcher = new MyErrorStateMatcher();
 
   onSubmit(){
-    if(this.authService.authenticateUser(this.loginForm)){
-      this.router.navigate(['/home']);
-    };
-    
+      this.router.navigate(['/home'], {state: {user:this.authService.authenticateUser(this.loginForm)}});
   }
 
 }

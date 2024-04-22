@@ -1,11 +1,13 @@
 export interface Catch{
-    id: number;
-    type: string;
+    baitType: string;
     date: Date;
-    location: object;
-    weather: object;
-    lure: object;
-    picture: string;
-    fish: object;
-    tags: string[];
+    id: number;
+    length?: number;
+    location: string;
+    lure: string;
+    lureColor: string;
+    species: string;
+    userId: number;
+    weight: number;
+    points: number;
 }
